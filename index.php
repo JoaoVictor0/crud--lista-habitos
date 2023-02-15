@@ -31,7 +31,7 @@ $sql = $pdo->query("SELECT * FROM lista_habitos WHERE status = 'A'");
                         <td><?= $habito['nome'];?></td>
                         <td>
                             <a href="vencer_habito.php?id=<?php echo $habito['id'];?>" class="vencer">Vencer</a>
-                            <a href="desistir_habito.php?id=<?php echo $habito['id'];?>" class="desistir">Desistir</a>
+                            <a href="desistir_habito.php?id=<?php echo $habito['id'];?>" class="desistir" onclick="return confirm('Deseja mesmo desistir desse hábito?')">Desistir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
