@@ -3,11 +3,13 @@ require 'config.php';
 
 $lista_habitos = [];
 
-$sql = $pdo->query("SELECT * FROM lista_habitos");
+$sql = $pdo->query("SELECT * FROM lista_habitos WHERE status = 'A'");
 
+/*
 if($sql->rowCount() > 0) {
     $lista_habitos = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -23,26 +25,53 @@ if($sql->rowCount() > 0) {
     
     <div class="center">
         <h1>Lista de Hábitos</h1>
+        <hr>
         <p>Cadastre aqui os hábitos que você tem que vencer para melhorar sua vida!</p>
-
-        <table>
+        <?php 
+        if($sql->rowCount() > 0) {
+            $lista_habitos = $sql->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <table>
             <?php foreach($lista_habitos as $habito): ?>
-                <tr>
-                    <td><?= $habito['id'];?></td>
-                    <td><?= $habito['nome'];?></td>
-                    <td>
-                        <a href="vencer_habito.php?id=<?php echo $habito['id'];?>>">Vencer</a>
-                        <a href="desistir_habito.php?id=<?php echo $habito['id'];?>>">Desistir</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-        <p>Você não possui hábitos cadastrados!</p> <br>
-        <p>Comece já a mudar sua vida!</p> <br><br>
+                    <tr>
+                        <td><?= $habito['id'];?></td>
+                        <td><?= $habito['nome'];?></td>
+                        <td>
+                            <a href="vencer_habito.php?id=<?php echo $habito['id'];?>" class="vencer">Vencer</a>
+                            <a href="desistir_habito.php?id=<?php echo $habito['id'];?>" class="desistir">Desistir</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <?php 
+        } else {
+            ?>
+            <p>Você não possui hábitos cadastrados!</p> 
+            <p>Comece já a mudar sua vida!</p> 
+            <?php
+        }
+            ?>
+        
+        
 
-        <a href="novo_habito.php">Cadastrar Hábito</a>
+        <a class="novo_habito" href="novo_habito.php">Cadastrar Hábito</a>
     </div>
 
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
