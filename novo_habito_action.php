@@ -18,10 +18,10 @@ if($name) {
         exit;
 
     } else {
-        header("Location: adicionar.php");
+        header("Location: novo_habito.php");
         exit;
     }
 } else {
-    header("Location: adicionar.php");
+    header("Location: novo_habito.php");
     exit;
 }

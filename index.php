@@ -2,14 +2,7 @@
 require 'config.php';
 
 $lista_habitos = [];
-
 $sql = $pdo->query("SELECT * FROM lista_habitos WHERE status = 'A'");
-
-/*
-if($sql->rowCount() > 0) {
-    $lista_habitos = $sql->fetchAll(PDO::FETCH_ASSOC);
-}
-*/
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +44,9 @@ if($sql->rowCount() > 0) {
             <?php
         }
             ?>
-        
-        
-
+    
         <a class="novo_habito" href="novo_habito.php">Cadastrar Hábito</a>
     </div>
-
 
 </body>
 </html>
